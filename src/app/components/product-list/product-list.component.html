@@ -1,0 +1,17 @@
+<div class="product-grid">
+  <!-- Display only the first `visibleProducts` items -->
+  @for (product of visibleProducts(); track $index) {
+    <app-product-card
+      [product]="product"
+      (addPressed)="addToCart(product)"
+      (removePressed)="removeFromCart(product.id)"
+    ></app-product-card>
+  }
+</div>
+
+<!-- Load More Button -->
+@if (visibleProducts().length < products().length) {
+  <div class="load-more-container">
+    <button class="load-more-button" (click)="loadMore()">Load More</button>
+  </div>
+}

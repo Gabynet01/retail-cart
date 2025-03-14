@@ -1,0 +1,47 @@
+@if (type === 'normal') {
+  <div class="card-container">
+    <img class="image" [src]="product.image ?? ''" alt="item image" />
+    <div class="content">
+      <h3 class="name">{{ product.name }}</h3>
+      <p class="price">GH&#8373;{{ product.price }}</p>
+    </div>
+    <div class="button-container">
+      @if (!existsInCart) {
+        <button (click)="addPressed.emit()" class="add-to-cart">Add to Cart</button>
+      } @else {
+        <div class="add-remove">
+          <button class="plus-minus" (click)="addPressed.emit()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button class="plus-minus" (click)="removePressed.emit()">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="cart-item-container">
+    <img class="cart-item-image" [src]="product.image ?? ''" alt="item image" />
+    <div class="cart-item-details">
+      <h3 class="cart-item-name">{{ product.name }}</h3>
+      <p class="cart-item-price">GH&#8373;{{ product.price }} x {{ quantity }}</p>
+      <div class="cart-item-actions">
+        <div class="add-remove">
+          <button class="plus-minus" (click)="addPressed.emit()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button class="plus-minus" (click)="removePressed.emit()">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+        <button class="remove-item" (click)="cartService.removeFromCart(product.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <p class="cart-item-subtotal">
+        SubTotal: GH&#8373;{{ cartService.getSubTotal(product.id).toFixed(2) }}
+      </p>
+    </div>
+  </div>
+}

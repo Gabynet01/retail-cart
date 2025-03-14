@@ -1,0 +1,73 @@
+.main-container {
+  @apply min-h-screen bg-gradient-to-br from-black to-black/50 flex flex-col items-center p-4;
+
+  .navbar {
+    @apply w-[95%] p-4 backdrop-blur-lg bg-white/50 flex justify-between items-center 
+           max-md:flex-col gap-4 rounded-2xl border border-white/80 shadow-lg;
+
+    .search-bar {
+      @apply w-full md:w-1/2 max-md:order-[-1];
+    }
+
+    .nav-links {
+      @apply flex gap-6 font-['Space_Grotesk_Medium'] text-black items-center;
+
+      .nav-link {
+        @apply hover:text-white px-3 py-2 transition-colors duration-300;
+      }
+
+      .cart-link {
+        @apply hover:text-white px-3 py-2 flex items-center gap-2 transition-colors duration-300;
+
+        .cart-icon {
+          @apply relative;
+
+          mat-icon {
+            @apply mr-4;
+          }
+
+          .cart-count {
+            @apply absolute flex rounded-full items-center justify-center 
+                   top-[-0.5rem] right-0 size-5 bg-white text-black 
+                   text-xs font-bold transition-colors duration-300;
+          }
+
+          &:hover .cart-count {
+            @apply bg-black/50 text-white;
+          }
+        }
+      }
+    }
+  }
+
+  .content-section {
+    @apply w-[95%] mt-8 backdrop-blur-md bg-white/50 p-6 rounded-2xl 
+           border border-white/80 shadow-lg;
+  }
+}
+
+.cart-link {
+  @apply hover:text-white px-3 py-2 flex items-center gap-2 transition-colors duration-300;
+
+  &.disabled {
+    @apply opacity-50 cursor-not-allowed pointer-events-none;
+  }
+
+  .cart-icon {
+    @apply relative;
+
+    mat-icon {
+      @apply mr-4;
+    }
+
+    .cart-count {
+      @apply absolute flex rounded-full items-center justify-center 
+             top-[-0.5rem] right-0 size-5 bg-white text-black 
+             text-xs font-bold transition-colors duration-300;
+    }
+
+    &:hover .cart-count {
+      @apply bg-black/50 text-white;
+    }
+  }
+}

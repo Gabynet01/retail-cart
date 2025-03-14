@@ -1,0 +1,7 @@
+@use 'styles/base';
+@use 'styles/utilities';
+@use 'styles/components';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,72 @@
+<section>
+  <div class="cart-items">
+    @for (item of cart.items; track item.product.id) {
+      <app-product-card
+        [product]="item.product"
+        type="cart"
+        [quantity]="item.quantity"
+        (addPressed)="updateQuantity(item.product.id, item.quantity + 1)"
+        (removePressed)="updateQuantity(item.product.id, item.quantity - 1)"
+      ></app-product-card>
+    }
+  </div>
+
+  <div class="cart-summary">
+    <form [formGroup]="discountForm">
+      <div class="discount-section">
+        <p class="question-text">Do you have a discount code?</p>
+
+        <div class="button-group">
+          <button
+            type="button"
+            class="toggle-button"
+            [ngClass]="{ active: showDiscountField }"
+            (click)="toggleDiscount(true)"
+          >
+            YES
+          </button>
+          <button
+            type="button"
+            class="toggle-button"
+            [ngClass]="{ active: !showDiscountField }"
+            (click)="toggleDiscount(false)"
+          >
+            NO
+          </button>
+        </div>
+
+        <div *ngIf="showDiscountField" class="discount-input-group">
+          <input
+            type="text"
+            placeholder="Enter discount code"
+            formControlName="code"
+            class="discount-input"
+          />
+          <button
+            class="apply-discount"
+            (click)="applyDiscount()"
+            [disabled]="discountForm.invalid"
+          >
+            Apply
+          </button>
+        </div>
+
+        <p *ngIf="discountForm.controls.code.errors?.['pattern']" class="error-message">
+          Invalid format. Use letters and numbers only.
+        </p>
+
+        <ng-container *ngIf="errorMessage()">
+          <p class="error-message">{{ errorMessage() }}</p>
+        </ng-container>
+        <ng-container *ngIf="successMessage()">
+          <p class="success-message">{{ successMessage() }}</p>
+        </ng-container>
+      </div>
+    </form>
+
+    <div class="total-section">
+      <p class="total-label">Total:</p>
+      <p class="total-amount">GH&#8373;{{ cart.total.toFixed(2) }}</p>
+    </div>
+  </div>
+</section>

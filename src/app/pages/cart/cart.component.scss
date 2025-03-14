@@ -1,0 +1,67 @@
+.cart-items {
+  @apply space-y-4 mb-8;
+}
+
+.cart-summary {
+  @apply bg-white/10 p-6 rounded-lg border border-white/20;
+
+  .discount-section {
+    @apply space-y-4; // Add vertical spacing between elements
+
+    .question-text {
+      @apply text-lg font-['Space_Grotesk_SemiBold'] mb-4; // Add margin below the question
+    }
+
+    .button-group {
+      @apply flex gap-4 mb-6; // Add horizontal spacing between buttons
+
+      .toggle-button {
+        @apply px-6 py-2 rounded-lg bg-white/70 border border-white/30 
+               hover:bg-white/90 transition-colors duration-300;
+
+        &.active {
+          @apply bg-white/90 ring-2 ring-white/50; // Highlight active button
+        }
+      }
+    }
+
+    .discount-input-group {
+      @apply flex gap-4; // Add spacing between input and button
+
+      .discount-input {
+        @apply flex-1 p-2 rounded-lg bg-white/70 border border-white/30 
+               focus:outline-none focus:ring-2 focus:ring-white/50;
+      }
+
+      .apply-discount {
+        @apply px-6 py-2 bg-white/70 rounded-lg 
+               hover:bg-white/90 transition-colors duration-300;
+      }
+    }
+
+    .error-message,
+    .success-message {
+      @apply text-sm mt-2; // Add margin above messages
+    }
+
+    .error-message {
+      @apply text-red-700;
+    }
+
+    .success-message {
+      @apply text-green-700;
+    }
+  }
+
+  .total-section {
+    @apply flex justify-between items-center pt-6 border-t border-white/20;
+
+    .total-label {
+      @apply text-lg font-['Space_Grotesk_SemiBold'];
+    }
+
+    .total-amount {
+      @apply text-xl font-['Space_Grotesk_Bold'];
+    }
+  }
+}

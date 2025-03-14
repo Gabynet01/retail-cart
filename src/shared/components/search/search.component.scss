@@ -1,0 +1,13 @@
+.search-field {
+  @apply relative h-10 overflow-hidden;
+
+  input {
+    @apply w-full py-2 px-4 border rounded-full pl-12 text-xl h-full
+    focus:outline-none focus:border-blue-500 transition-colors duration-300 ease-linear;
+  }
+
+  .search-icon {
+    @apply absolute left-0 top-0 h-full px-4 flex items-center justify-center 
+    transition-colors duration-300 ease-linear focus:border-blue-500;
+  }
+}

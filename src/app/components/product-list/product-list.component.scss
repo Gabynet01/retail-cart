@@ -1,0 +1,36 @@
+.product-grid {
+  @apply grid grid-cols-1 gap-6 w-full;
+
+  // Responsive grid layout using Tailwind's default breakpoints
+  @screen sm {
+    @apply grid-cols-2;
+  }
+
+  @screen md {
+    @apply grid-cols-3;
+  }
+
+  @screen lg {
+    @apply grid-cols-4;
+  }
+
+  @screen xl {
+    @apply grid-cols-5;
+  }
+
+  @screen 2xl {
+    @apply grid-cols-6;
+  }
+
+  // Optional: Add hover effects to product cards
+  app-product-card {
+    @apply transition-transform duration-300 ease-in-out transform hover:scale-105;
+  }
+}
+.load-more-container {
+  @apply flex justify-center mt-8;
+
+  .load-more-button {
+    @apply px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors duration-300;
+  }
+}

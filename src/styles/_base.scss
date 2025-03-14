@@ -1,0 +1,30 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  border-width: 0;
+  border-style: none !important;
+  border-color: transparent !important;
+}
+
+button {
+  background-color: transparent;
+  user-select: none;
+  border: 0.063rem solid transparent;
+  outline: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Space Grotesk Regular', Roboto, 'Helvetica Neue', sans-serif;
+}

@@ -1,0 +1,12 @@
+{
+  "tailwindCSS.experimental.classRegex": [
+    ["Class \\=([^;]*);", "'([^']*)'"],
+    ["Class \\=([^;]*);", "\"([^\"]*)\""],
+    ["Class \\=([^;]*);", "\\`([^\\`]*)\\`"],
+    ["class\\s*=\\s*\"([^\"]*)\"", "class\\s*=\\s*'([^']*)'"],
+    ["\\[ngClass\\]\\s*=\\s*\"([^\"]*)\"", "\\[ngClass\\]\\s*=\\s*'([^']*)'"],
+    ["\\[?\\w*Class\\]?\\s*=\\s*\"([^\"]*)\"", "\\[?\\w*Class\\]?\\s*=\\s*'([^']*)'"],
+    ["\\b\\w*Class\\s*=\\s*\"([^\"]*)\"", "\\b\\w*Class\\s*=\\s*'([^']*)'"]
+  ],
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Class.*"]
+}

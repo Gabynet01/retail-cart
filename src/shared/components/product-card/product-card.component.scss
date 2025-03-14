@@ -1,0 +1,84 @@
+.card-container {
+  @apply bg-white/10 rounded-lg border border-white/20 shadow-md 
+         overflow-hidden transition-all duration-300 hover:shadow-lg 
+         flex flex-col justify-between h-full;
+
+  .image {
+    @apply w-full h-48 object-contain bg-white;
+  }
+
+  .content {
+    @apply p-4 flex flex-col gap-2;
+
+    .name {
+      @apply text-lg font-['Space_Grotesk_SemiBold'] text-black 
+             line-clamp-2; // Allow two lines with ellipsis
+    }
+
+    .price {
+      @apply text-base font-['Space_Grotesk_Medium'] text-black/80;
+    }
+  }
+
+  .button-container {
+    @apply p-4;
+
+    .add-to-cart {
+      @apply w-full py-2 px-4 bg-white/70 text-black rounded-lg 
+             border border-white/30 hover:bg-white/90 transition-colors 
+             duration-300 font-['Space_Grotesk_Medium'];
+    }
+
+    .add-remove {
+      @apply flex gap-2 justify-end;
+
+      .plus-minus {
+        @apply size-8 bg-white/70 rounded-lg flex items-center 
+               justify-center transition-colors hover:bg-white;
+      }
+    }
+  }
+}
+
+.cart-item-container {
+  @apply flex gap-4 items-center p-4 bg-white/10 rounded-lg 
+         border border-white/20;
+
+  .cart-item-image {
+    @apply size-20 object-contain bg-white rounded-lg;
+  }
+
+  .cart-item-details {
+    @apply flex-1;
+
+    .cart-item-name {
+      @apply text-lg font-['Space_Grotesk_SemiBold'] text-black 
+             line-clamp-2; // Allow two lines with ellipsis
+    }
+
+    .cart-item-price {
+      @apply text-base text-black/80;
+    }
+
+    .cart-item-actions {
+      @apply flex items-center gap-2;
+
+      .add-remove {
+        @apply flex gap-2;
+
+        .plus-minus {
+          @apply size-8 bg-white/70 rounded-lg flex items-center 
+                 justify-center transition-colors hover:bg-white;
+        }
+      }
+
+      .remove-item {
+        @apply p-1 text-red-500 hover:text-red-600 transition-colors;
+      }
+    }
+
+    .cart-item-subtotal {
+      @apply mt-1 text-sm font-['Space_Grotesk_Medium'] text-black/90;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<section class="main-container">
+  <nav class="navbar">
+    <!-- Search Component -->
+    <app-search class="search-bar"></app-search>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <!-- Products Link -->
+      <a (click)="navigateToProducts()" class="nav-link">Products</a>
+
+      <!-- Cart Link -->
+      <a
+        (click)="navigateToCart()"
+        [class.disabled]="cartService.totalItems() === 0"
+        class="cart-link"
+      >
+        <span>Cart</span>
+        <div class="cart-icon">
+          <mat-icon>shopping_cart</mat-icon>
+          @if (cartService.totalItems() > 0) {
+            <span class="cart-count">{{ cartService.totalItems() }}</span>
+          }
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content Section -->
+  <section class="content-section">
+    <ng-content></ng-content>
+  </section>
+</section>

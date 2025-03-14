@@ -1,0 +1,15 @@
+.product-list-container {
+  @apply w-full;
+
+  .header {
+    @apply mb-8 text-center md:text-left;
+
+    .title {
+      @apply text-3xl font-bold mb-2 text-black;
+    }
+
+    .subtitle {
+      @apply text-black/80 text-lg;
+    }
+  }
+}
