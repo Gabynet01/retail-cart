@@ -12,7 +12,7 @@ Retail Cart is a high-performance, scalable **Single Page Application (SPA)** bu
 - **Real-time Price Calculation**: Instant subtotal and total price updates.
 - **Offline Support**: Cart state persists using **Local Storage**.
 - **Performance Optimization**: Uses **RxJS Signals** for efficient state management.
-- **Modern UI**: Styled with **Angular Material & Bootstrap** for a sleek, responsive experience.
+- **Modern UI**: Styled with **Angular Material & Tailwind** for a sleek, responsive experience.
 - **Unit Testing**: Comprehensive test coverage using **Jest**.
 
 ## 🏗️ Architecture & Best Practices
