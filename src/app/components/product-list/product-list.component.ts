@@ -49,12 +49,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
   // Add a product to the cart
   addToCart(product: Product) {
     this.cartService.addToCart(product);
-    this.snackbar.success(`${product.name} added to cart`);
+    this.snackbar.success(`Added to cart successfully`);
   }
 
   // Remove a product from the cart
   removeFromCart(id: Product['id']) {
     this.cartService.removeFromCart(id);
+    this.snackbar.info(`Removed from cart`);
   }
 
   // Load more products
