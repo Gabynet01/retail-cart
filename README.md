@@ -39,7 +39,7 @@ retail-cart/
 │   │   ├── app.routes.ts     # Angular routing configuration
 │   │   ├── app.config.ts     # Application-wide configurations
 │   ├── assets/               # Static assets (Images, mock data, etc.)
-│   ├── styles                # Global styles
+│   ├── styles.scss           # Global styles
 │
 ├── angular.json              # Angular project configuration
 ├── package.json              # Dependencies and scripts
