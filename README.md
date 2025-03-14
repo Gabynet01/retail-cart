@@ -1,31 +1,31 @@
 # Retail Cart (Angular 18)
 
-## 🚀 Overview
+## Overview
 
-Retail Cart is a high-performance, scalable **Single Page Application (SPA)** built with **Angular 18**. It simulates a simple retail shopping experience, allowing users to browse products, manage a cart, and apply discount codes with a seamless and responsive UI. The project is optimized for **performance, maintainability, offline support, and test coverage**.
+Retail Cart is a high-performance, scalable **Single Page Application (SPA)** built with **Angular 18**. It simulates a retail shopping experience, allowing users to browse products, manage a cart, and apply discount codes with a seamless and responsive UI. The project is optimized for **performance, maintainability, offline support, and test coverage**.
 
-## ✅ Features
+## Features
 
-- **Product Listing**: View a list of products with images, names, and prices.
-- **Cart Management**: Add, remove, and update product quantities dynamically.
-- **Discount Codes**: Apply predefined discount codes (`SAVE10`, `SAVE5`) with validation.
-- **Real-time Price Calculation**: Instant subtotal and total price updates.
+- **Product Listing**: Displays products with images, names, and prices.
+- **Cart Management**: Allows users to add, remove, and update product quantities dynamically.
+- **Discount Codes**: Supports predefined discount codes (`SAVE10`, `SAVE5`) with validation.
+- **Real-time Price Calculation**: Updates subtotal and total price instantly.
 - **Offline Support**: Cart state persists using **Local Storage**.
-- **Performance Optimization**: Uses **RxJS Signals** for efficient state management.
-- **Modern UI**: Styled with **Angular Material & Tailwind** for a sleek, responsive experience.
-- **Unit Testing**: Comprehensive test coverage using **Jest**.
+- **Performance Optimization**: Utilizes **RxJS Signals** for efficient state management.
+- **Modern UI**: Styled with **Angular Material & Tailwind** for a clean and responsive experience.
+- **Unit Testing**: Ensures quality with **Jest** test coverage.
 
-## 🏗️ Architecture & Best Practices
+## Architecture & Best Practices
 
-### 📌 Project Design
+### Project Design
 
 - **Component-Driven Architecture**: Modular and reusable UI components.
-- **State Management**: Utilizes **RxJS Signals** for reactive, efficient state handling.
+- **State Management**: Implements **RxJS Signals** for reactive and efficient state handling.
 - **Separation of Concerns**: Business logic is encapsulated in services (`CartService`, `ProductService`).
 - **Strict TypeScript Typing**: Ensures type safety with well-defined **interfaces** and **enums**.
-- **Lazy Loading**: Routes optimized for performance and scalability.
+- **Lazy Loading**: Optimized routes for performance and scalability.
 
-### 📂 Project Structure
+### Project Structure
 
 ```
 retail-cart/
@@ -33,7 +33,7 @@ retail-cart/
 │   ├── app/
 │   │   ├── components/       # Reusable components (ProductList, Cart, DiscountInput, etc.)
 │   │   ├── pages/            # Main pages (Product Page, Cart Page)
-│   │   ├── shared/services/  # Business logic (CartService, ProductService, etc.)
+│   │   ├── shared/services/  # Business logic (CartService, ProductService,  StorageService etc.)
 │   │   ├── shared/models/    # TypeScript interfaces (Product, CartItem, etc.)
 │   │   ├── shared/helpers    # Helper functions (search, etc.)
 │   │   ├── app.routes.ts     # Angular routing configuration
@@ -47,22 +47,22 @@ retail-cart/
 ├── README.md                 # Project documentation
 ```
 
-## 🛠 Installation & Setup
+## Installation & Setup
 
-### 1️⃣ Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Gabynet01/retail-cart.git
 cd retail-cart
 ```
 
-### 2️⃣ Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3️⃣ Run the Application
+### 3. Run the Application
 
 ```bash
 ng serve
@@ -70,7 +70,7 @@ ng serve
 
 Then, open **http://localhost:4200/** in your browser.
 
-## 🧪 Running Tests
+## Running Tests
 
 To execute unit tests with **Jest**, run:
 
@@ -80,7 +80,7 @@ npm test
 
 This will launch Jest and execute the test suite.
 
-## 🌐 Live Demo
+## Live Demo
 
-A live version of the project is available at:
-➡️ [https://retail-cart-seven.vercel.app]
+A live version of the project is available at:  
+[**Retail Cart Demo**](https://retail-cart-seven.vercel.app)
