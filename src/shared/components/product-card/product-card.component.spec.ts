@@ -44,7 +44,7 @@ describe('ProductCardComponent', () => {
     const nameElement = fixture.debugElement.query(By.css('.name')).nativeElement;
     const priceElement = fixture.debugElement.query(By.css('.price')).nativeElement;
     expect(nameElement.textContent).toContain(mockProduct.name);
-    expect(priceElement.textContent).toContain(`GH₵${mockProduct.price}`);
+    expect(priceElement.textContent).toContain(`$${mockProduct.price}`);
   });
 
   it('should emit addPressed event when add-to-cart button is clicked', () => {

@@ -69,7 +69,7 @@ describe('CartComponent', () => {
   it('should calculate and display correct total price', () => {
     const expectedTotal = dummmyProducts[0].price * 2 + dummmyProducts[1].price;
     const totalEl = fixture.debugElement.query(By.css('.total-amount'));
-    expect(totalEl.nativeElement.textContent).toContain(`GH₵${expectedTotal.toFixed(2)}`);
+    expect(totalEl.nativeElement.textContent).toContain(`$${expectedTotal.toFixed(2)}`);
   });
 
   it('should update product quantity when add/remove is triggered', () => {

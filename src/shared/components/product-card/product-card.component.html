@@ -3,7 +3,7 @@
     <img class="image" [src]="product.image ?? ''" alt="item image" />
     <div class="content">
       <h3 class="name">{{ product.name }}</h3>
-      <p class="price">GH&#8373;{{ product.price }}</p>
+      <p class="price">&#36;{{ product.price }}</p>
     </div>
     <div class="button-container">
       @if (!existsInCart) {
@@ -25,7 +25,7 @@
     <img class="cart-item-image" [src]="product.image ?? ''" alt="item image" />
     <div class="cart-item-details">
       <h3 class="cart-item-name">{{ product.name }}</h3>
-      <p class="cart-item-price">GH&#8373;{{ product.price }} x {{ quantity }}</p>
+      <p class="cart-item-price">&#36;{{ product.price }} x {{ quantity }}</p>
       <div class="cart-item-actions">
         <div class="add-remove">
           <button class="plus-minus" (click)="addPressed.emit()">
@@ -40,7 +40,7 @@
         </button>
       </div>
       <p class="cart-item-subtotal">
-        SubTotal: GH&#8373;{{ cartService.getSubTotal(product.id).toFixed(2) }}
+        SubTotal: &#36;{{ cartService.getSubTotal(product.id).toFixed(2) }}
       </p>
     </div>
   </div>
