@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class StorageService {
   keys = {
     cart: 'cartStore',
+    discount: 'discountStore',
   };
   getItem(key: string): string | null {
     if (typeof window !== 'undefined') {

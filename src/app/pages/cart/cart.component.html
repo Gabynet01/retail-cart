@@ -14,52 +14,71 @@
   <div class="cart-summary">
     <form [formGroup]="discountForm">
       <div class="discount-section">
-        <p class="question-text">Do you have a discount code?</p>
+        @if (!showDiscountField) {
+          <p class="question-text">Do you have a discount code?</p>
 
-        <div class="button-group">
-          <button
-            type="button"
-            class="toggle-button"
-            [ngClass]="{ active: showDiscountField }"
-            (click)="toggleDiscount(true)"
-          >
-            YES
-          </button>
-          <button
-            type="button"
-            class="toggle-button"
-            [ngClass]="{ active: !showDiscountField }"
-            (click)="toggleDiscount(false)"
-          >
-            NO
-          </button>
-        </div>
+          <div class="button-group">
+            <button
+              type="button"
+              class="toggle-button"
+              [ngClass]="{ active: showDiscountField }"
+              (click)="toggleDiscount(true)"
+            >
+              YES
+            </button>
+            <button
+              type="button"
+              class="toggle-button"
+              [ngClass]="{ active: !showDiscountField }"
+              (click)="toggleDiscount(false)"
+            >
+              NO
+            </button>
+          </div>
+        }
 
-        <div *ngIf="showDiscountField" class="discount-input-group">
-          <input
-            type="text"
-            placeholder="Enter discount code"
-            formControlName="code"
-            class="discount-input"
-          />
-          <button
-            class="apply-discount"
-            (click)="applyDiscount()"
-            [disabled]="discountForm.invalid"
-          >
-            Apply
-          </button>
-        </div>
+        @if (showDiscountField) {
+          <div class="discount-input-group">
+            <input
+              type="text"
+              placeholder="Enter discount code"
+              formControlName="code"
+              class="discount-input"
+            />
+            <button
+              class="apply-discount"
+              [ngClass]="{ ' applied ': discounted() }"
+              (click)="applyDiscount()"
+              [disabled]="discounted()"
+            >
+              {{ discounted() ? 'Applied' : 'Apply' }}
+            </button>
+            @if (!discounted()) {
+              <button
+                class="reset-button"
+                (click)="showDiscountField = false; discountForm.get('code')?.setValue('')"
+              >
+                CANCEL
+              </button>
+            } @else {
+              <button type="button" class="reset-button" (click)="resetDiscount()">Reset</button>
+            }
+          </div>
+        }
 
         <p *ngIf="discountForm.controls.code.errors?.['pattern']" class="error-message">
           Invalid format. Use letters and numbers only.
         </p>
 
-        <ng-container *ngIf="errorMessage()">
-          <p class="error-message">{{ errorMessage() }}</p>
-        </ng-container>
-        <ng-container *ngIf="successMessage()">
-          <p class="success-message">{{ successMessage() }}</p>
+        <ng-container *ngIf="message()">
+          <p
+            [ngClass]="{
+              'error-message': discountStatus() === 'error',
+              'success-message': discountStatus() === 'success',
+            }"
+          >
+            {{ message() }}
+          </p>
         </ng-container>
       </div>
     </form>

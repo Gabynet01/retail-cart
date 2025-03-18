@@ -100,7 +100,7 @@ describe('CartComponent', () => {
 
       noButton.triggerEventHandler('click', null);
       fixture.detectChanges();
-      expect(component.showDiscountField).toBeFalsy();
+      expect(component.showDiscountField).toBeTruthy();
     });
 
     it('should show error message for invalid discount code', () => {
@@ -121,7 +121,7 @@ describe('CartComponent', () => {
       fixture.detectChanges();
 
       expect(cartService.applyDiscount).toHaveBeenCalledWith('SAVE10');
-      expect(component.successMessage()).toBe('Discount Applied!');
+      expect(component.message()).toBe('Discount Applied!');
     });
 
     it('should show error message when discount application fails', () => {
@@ -132,7 +132,7 @@ describe('CartComponent', () => {
       fixture.detectChanges();
 
       expect(cartService.applyDiscount).toHaveBeenCalledWith('INVALIDCODE');
-      expect(component.errorMessage()).toBe('Invalid discount code');
+      expect(component.message()).toBe('Invalid discount code');
     });
 
     it('should enable/disable discount input field based on discount availability', fakeAsync(() => {

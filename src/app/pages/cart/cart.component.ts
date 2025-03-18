@@ -1,4 +1,4 @@
-import { Component, computed, effect, signal, inject } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../../../shared/services/cart/cart.service';
@@ -12,28 +12,38 @@ import { ProductCardComponent } from '../../../shared/components/product-card/pr
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
-  readonly errorMessage = signal('');
-  readonly successMessage = signal('');
+  readonly message = signal('');
+  discountStatus = signal<'success' | 'error' | null>(null);
   showDiscountField = false;
 
   readonly discountForm = new FormGroup({
     code: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z0-9]+$/)]),
   });
 
-  constructor(private readonly cartService: CartService) {
-    // Computed property for discount state
-    const discounted = computed(() => Boolean(this.cartService.discount()));
+  discounted = computed(() => Boolean(this.cartService.discount()));
 
+  constructor(private readonly cartService: CartService) {
     // Effect to disable/enable discount input
     effect(() => {
-      discounted()
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      this.discounted()
         ? this.discountForm.get('code')?.disable()
         : this.discountForm.get('code')?.enable();
     });
+    if (this.cartService.discount()) {
+      this.discountForm.get('code')?.setValue(this.cartService.getDiscountCode());
+      this.showDiscountField = true;
+    }
   }
 
   get cart() {
     return this.cartService.cart();
+  }
+
+  resetDiscount() {
+    this.cartService.removeDiscount();
+    this.discountForm.reset();
+    this.message.set('');
   }
 
   toggleDiscount(hasDiscount: boolean) {
@@ -50,16 +60,19 @@ export class CartComponent {
   }
 
   applyDiscount() {
-    this.errorMessage.set('');
-    this.successMessage.set('');
+    this.message.set('');
+    this.discountStatus.set(null);
 
     const code = this.discountForm.get('code')?.value?.trim() || '';
     if (this.discountForm.invalid) return;
 
     if (!this.cartService.applyDiscount(code)) {
-      this.errorMessage.set('Invalid discount code');
+      this.message.set('Invalid discount code');
+      this.discountStatus.set('error');
+      this.discountForm.reset();
     } else {
-      this.successMessage.set('Discount Applied!');
+      this.message.set('Discount Applied!');
+      this.discountStatus.set('success');
     }
   }
 }

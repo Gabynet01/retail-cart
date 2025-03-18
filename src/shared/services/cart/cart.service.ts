@@ -21,7 +21,9 @@ export class CartService {
   constructor(private storageService: StorageService) {
     // Load cart items from storage on initialization
     const storedItems = this.storageService.getItem(this.storageService.keys.cart);
+    const storedDiscount = this.storageService.getItem(this.storageService.keys.discount);
     if (storedItems) this.cartItems.set(JSON.parse(storedItems));
+    if (storedDiscount) this.discount.set(JSON.parse(storedDiscount));
   }
 
   /**
@@ -92,6 +94,7 @@ export class CartService {
    */
   cartEffect = effect(() => {
     this.storageService.setItem(this.storageService.keys.cart, JSON.stringify(this.cart().items));
+    this.storageService.setItem(this.storageService.keys.discount, JSON.stringify(this.discount()));
   });
 
   /**
@@ -145,6 +148,26 @@ export class CartService {
 
     this.discount.set(discount);
     return true;
+  }
+
+  /**
+   * Removes the currently applied discount from the cart
+   */
+  removeDiscount(): void {
+    this.discount.set(null);
+  }
+
+  getDiscountCode(): string {
+    const currentDiscount = this.discount();
+    if (!currentDiscount) return '';
+
+    // Find the code that matches the current discount configuration
+    for (const [code, discount] of this.validDiscounts.entries()) {
+      if (discount.type === currentDiscount.type && discount.value === currentDiscount.value) {
+        return code;
+      }
+    }
+    return '';
   }
 
   /**

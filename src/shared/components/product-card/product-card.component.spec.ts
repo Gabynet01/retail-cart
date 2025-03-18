@@ -56,10 +56,17 @@ describe('ProductCardComponent', () => {
 
   it('should emit removePressed event when remove button is clicked', () => {
     jest.spyOn(component.removePressed, 'emit');
-    cartServiceMock.itemExistsInCart.mockReturnValue(true);
+
+    component.type = 'cart';
     fixture.detectChanges();
-    const button = fixture.debugElement.query(By.css('.plus-minus:last-child'));
-    button.triggerEventHandler('click', null);
+
+    const buttons = fixture.debugElement.queryAll(By.css('.plus-minus'));
+
+    expect(buttons.length).toBeGreaterThan(0);
+
+    const removeButton = buttons[1];
+    removeButton.triggerEventHandler('click', null);
+
     expect(component.removePressed.emit).toHaveBeenCalled();
   });
 
