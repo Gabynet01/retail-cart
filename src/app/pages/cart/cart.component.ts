@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../../../shared/services/cart/cart.service';
 import { ProductCardComponent } from '../../../shared/components/product-card/product-card.component';
+import { NavigationService } from '../../../shared/services/navigation/navigation.service';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [ProductCardComponent, ReactiveFormsModule, CommonModule],
+  imports: [ProductCardComponent, ReactiveFormsModule, CommonModule, MatIcon],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
@@ -22,7 +24,10 @@ export class CartComponent {
 
   discounted = computed(() => Boolean(this.cartService.discount()));
 
-  constructor(private readonly cartService: CartService) {
+  constructor(
+    private readonly cartService: CartService,
+    public navigationService: NavigationService,
+  ) {
     // Effect to disable/enable discount input
     effect(() => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions

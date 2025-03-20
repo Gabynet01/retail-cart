@@ -1,91 +1,101 @@
 <section>
-  <div class="cart-items">
-    @for (item of cart.items; track item.product.id) {
-      <app-product-card
-        [product]="item.product"
-        type="cart"
-        [quantity]="item.quantity"
-        (addPressed)="updateQuantity(item.product.id, item.quantity + 1)"
-        (removePressed)="updateQuantity(item.product.id, item.quantity - 1)"
-      ></app-product-card>
-    }
-  </div>
-
-  <div class="cart-summary">
-    <form [formGroup]="discountForm">
-      <div class="discount-section">
-        @if (!showDiscountField) {
-          <p class="question-text">Do you have a discount code?</p>
-
-          <div class="button-group">
-            <button
-              type="button"
-              class="toggle-button"
-              [ngClass]="{ active: showDiscountField }"
-              (click)="toggleDiscount(true)"
-            >
-              YES
-            </button>
-            <button
-              type="button"
-              class="toggle-button"
-              [ngClass]="{ active: !showDiscountField }"
-              (click)="toggleDiscount(false)"
-            >
-              NO
-            </button>
-          </div>
-        }
-
-        @if (showDiscountField) {
-          <div class="discount-input-group">
-            <input
-              type="text"
-              placeholder="Enter discount code"
-              formControlName="code"
-              class="discount-input"
-            />
-            <button
-              class="apply-discount"
-              [ngClass]="{ ' applied ': discounted() }"
-              (click)="applyDiscount()"
-              [disabled]="discounted()"
-            >
-              {{ discounted() ? 'Applied' : 'Apply' }}
-            </button>
-            @if (!discounted()) {
-              <button
-                class="reset-button"
-                (click)="showDiscountField = false; discountForm.get('code')?.setValue('')"
-              >
-                CANCEL
-              </button>
-            } @else {
-              <button type="button" class="reset-button" (click)="resetDiscount()">Reset</button>
-            }
-          </div>
-        }
-
-        <p *ngIf="discountForm.controls.code.errors?.['pattern']" class="error-message">
-          Invalid format. Use letters and numbers only.
-        </p>
-
-        <ng-container *ngIf="message()">
-          <p
-            [ngClass]="{
-              'error-message': discountStatus() === 'error',
-              'success-message': discountStatus() === 'success',
-            }"
-          >
-            {{ message() }}
-          </p>
-        </ng-container>
-      </div>
-    </form>
-
-    <div class="total-section">
-      <p class="total-label">Total:</p>
-      <p class="total-amount">&#36;{{ cart.total.toFixed(2) }}</p>
+  @if (cart.items.length > 0) {
+    <div class="cart-items">
+      @for (item of cart.items; track item.product.id) {
+        <app-product-card
+          [product]="item.product"
+          type="cart"
+          [quantity]="item.quantity"
+          (addPressed)="updateQuantity(item.product.id, item.quantity + 1)"
+          (removePressed)="updateQuantity(item.product.id, item.quantity - 1)"
+        ></app-product-card>
+      }
     </div>
-  </div>
+
+    <div class="cart-summary">
+      <form [formGroup]="discountForm">
+        <div class="discount-section">
+          @if (!showDiscountField) {
+            <p class="question-text">Do you have a discount code?</p>
+
+            <div class="button-group">
+              <button
+                type="button"
+                class="toggle-button"
+                [ngClass]="{ active: showDiscountField }"
+                (click)="toggleDiscount(true)"
+              >
+                YES
+              </button>
+              <button
+                type="button"
+                class="toggle-button"
+                [ngClass]="{ active: !showDiscountField }"
+                (click)="toggleDiscount(false)"
+              >
+                NO
+              </button>
+            </div>
+          }
+
+          @if (showDiscountField) {
+            <div class="discount-input-group">
+              <input
+                type="text"
+                placeholder="Enter discount code"
+                formControlName="code"
+                class="discount-input"
+              />
+              <button
+                class="apply-discount"
+                [ngClass]="{ ' applied ': discounted() }"
+                (click)="applyDiscount()"
+                [disabled]="discounted()"
+              >
+                {{ discounted() ? 'Applied' : 'Apply' }}
+              </button>
+              @if (!discounted()) {
+                <button
+                  class="reset-button"
+                  (click)="showDiscountField = false; discountForm.get('code')?.setValue('')"
+                >
+                  CANCEL
+                </button>
+              } @else {
+                <button type="button" class="reset-button" (click)="resetDiscount()">Reset</button>
+              }
+            </div>
+          }
+
+          <p *ngIf="discountForm.controls.code.errors?.['pattern']" class="error-message">
+            Invalid format. Use letters and numbers only.
+          </p>
+
+          <ng-container *ngIf="message()">
+            <p
+              [ngClass]="{
+                'error-message': discountStatus() === 'error',
+                'success-message': discountStatus() === 'success',
+              }"
+            >
+              {{ message() }}
+            </p>
+          </ng-container>
+        </div>
+      </form>
+
+      <div class="total-section">
+        <p class="total-label">Total:</p>
+        <p class="total-amount">&#36;{{ cart.total.toFixed(2) }}</p>
+      </div>
+    </div>
+  } @else {
+    <div class="w-full flex flex-col items-center gap-4">
+      <p class="font-['Space_Grotesk_SemiBold'] text-center">You have no items in your cart</p>
+      <button (click)="navigationService.navigateToProducts()" class="go-shopping">
+        Go Shopping
+        <mat-icon>shopping_basket</mat-icon>
+      </button>
+    </div>
+  }
 </section>

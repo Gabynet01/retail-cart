@@ -6,14 +6,10 @@
     <!-- Navigation Links -->
     <div class="nav-links">
       <!-- Products Link -->
-      <a (click)="navigateToProducts()" class="nav-link">Products</a>
+      <button (click)="navigateToProducts()" class="nav-link">Products</button>
 
       <!-- Cart Link -->
-      <a
-        (click)="navigateToCart()"
-        [class.disabled]="cartService.totalItems() === 0"
-        class="cart-link"
-      >
+      <button (click)="navigateToCart()" class="cart-link">
         <span>Cart</span>
         <div class="cart-icon">
           <mat-icon>shopping_cart</mat-icon>
@@ -21,7 +17,7 @@
             <span class="cart-count">{{ cartService.totalItems() }}</span>
           }
         </div>
-      </a>
+      </button>
     </div>
   </nav>
 
